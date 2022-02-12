@@ -112,7 +112,20 @@ Spatie 创建的开源异常调试页面 [ignition](https://github.com/spatie/ig
    
 <a name="render-a-blade-string"></a>
 ## 渲染blade模版字符串
-               
+
+有时可能需要将原始 Blade 模板字符串转换为有效的 HTML。
+
+可以使用 Blade 门面提供的 `render` 方法来完成此操作。 
+
+`render` 方法接受 Blade 模板字符串和提供给模板的可选数据数组：
+
+```php
+use Illuminate\Support\Facades\Blade;
+ 
+return Blade::render('Hello, {{ $name }}', ['name' => 'Curder']); // 输出为：Hello, Curder
+```
+
+
 <a name="forced-scoped-bindings"></a>
 ## 强制范围绑定
    
