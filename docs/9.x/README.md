@@ -339,12 +339,36 @@ $post->state === PostState::Published;
 <a name="simplified-accessors-and-mutators"></a>
 ## 简化模型的访问器和修改器
 
+在 Laravel 9.x 之前版本中，定义访问器和修改器的唯一方法是在模型上定义前缀方法，如下所示：
 
-<a name=""></a>
-## 
+```php
+public function getNameAttribute($value)
+{
+    return strtoupper($value);
+}
+ 
+public function setNameAttribute($value)
+{
+    $this->attributes['name'] = $value;
+}
+```
 
+在 Laravel 9.x 中可以通过类型提示 `Illuminate\Database\Eloquent\Casts\Attribute` 的返回类型，使用单个非前缀方法来定义访问器和修改器：
 
-<a name=""></a>
-## 
+```php
+use Illuminate\Database\Eloquent\Casts\Attribute;
+ 
+public function name(): Attribute
+{
+    return new Attribute(
+        get: fn ($value) => ucwords($value),
+        set: fn ($value) => strtolower($value),
+    );
+}
 
-
+// 如果仅需要定义 get 或者she方法，可以调用 Attribute 的 `get()` 或 `set()` 方法。
+public function url(): Attribute
+{
+    return Attribute::get(fn () => route('posts.show', $this));
+}
+```
