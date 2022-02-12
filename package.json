@@ -1,0 +1,15 @@
+{
+  "name": "what-is-new-in-laravel",
+  "version": "1.0.0",
+  "description": "What's new in laravel",
+  "repository": "git@github.com:curder/what-is-new-in-laravel.git",
+  "author": "curder <q.curder@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "watch": "vuepress dev docs",
+    "prod": "vuepress build docs"
+  },
+  "devDependencies": {
+    "vuepress": "^2.0.0-beta.35"
+  }
+}
