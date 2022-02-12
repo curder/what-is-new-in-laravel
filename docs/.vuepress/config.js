@@ -1,4 +1,3 @@
-
 module.exports = {
     base: "/what-is-new-in-laravel/",
     lang: 'zh-CN',
@@ -7,7 +6,7 @@ module.exports = {
     themeConfig: {
         navbar: [
             {text: '首页', link: '/'},
-            {text: 'Laravel 9.x', link: '/9.x/'},
+            {text: 'Laravel 9.x', link: '/9.x'},
         ],
         sidebar: {
             //
