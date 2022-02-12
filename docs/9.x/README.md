@@ -257,6 +257,84 @@ DB::table('posts')->whereFullText('body', 'web developer')->get();
 <a name="enum-attribute-casting"></a>
 ## 枚举属性转换
 
+PHP 8.1 引入了对枚举的支持。
+
+
+### 路由映射
+Laravel 9.x 引入了在路由定义中键入提示 Enum 的能力，并且 Laravel 只会在该路由段是 URI 中的有效 Enum 值时调用该路由。
+
+否则，将自动返回 HTTP 404 响应。 例如，给定以下枚举：
+
+```php
+<?php
+namespace App\Enums;
+
+enum PostState: string
+{
+    case Draft = 'draft';
+    case Published = 'published';
+    case Archived = 'archived';
+}
+```
+
+可以定义仅当 `{state}` 路由段是 `draft` 、 `published` 或 `archived` 时才会调用的路由。 否则，将返回 HTTP 404 响应：
+
+```php
+use App\Enums\PostState;
+
+Route::get('/posts/{state}', function(PostState $state) {
+   return $state->value;
+});
+```
+        
+### 模型属性映射
+
+> 模型映射仅在 PHP 8.1+
+
+例如，给定以下枚举：
+
+```php
+<?php
+namespace App\Enums;
+
+enum PostState: string
+{
+    case Draft = 'draft';
+    case Published = 'published';
+    case Archived = 'archived';
+}
+```
+
+模型现在允许将属性值转换为 PHP 枚举。 为此，您可以在模型的 `$casts` 属性数组中指定要转换的属性和枚举：
+
+```php
+use App\Enums\PostState;
+ 
+/**
+ * The attributes that should be cast.
+ *
+ * @var array
+ */
+protected $casts = [
+    'state' => PostState::class,
+];
+```
+
+一旦在模型上定义了映射，当与属性交互时，指定的属性将自动转换为枚举：
+
+```php
+$post = Post::::query()->inRandomOrder()->firstOrFail();
+
+$post->state; // 获取的 state属性返回值为对应的 Enum
+$post->state->value; // 通过调用 value 获取对应的值
+
+// 当我们赋值一个非Enum定义的子项时，会抛出错误 
+$post = new \App\Models\Post();
+$post->state = 'ad'; // \App\Enums\PostState::Published;
+
+// 判断是否为某个Enum项
+$post->state === PostState::Published;
+```
 
 <a name="simplified-accessors-and-mutators"></a>
 ## 简化模型的访问器和修改器
