@@ -128,7 +128,47 @@ return Blade::render('Hello, {{ $name }}', ['name' => 'Curder']); // 输出为�
 
 <a name="forced-scoped-bindings"></a>
 ## 强制范围绑定
-   
+ 
+在 Laravel 9.x 之前的版本中，可能希望在路由定义中限定第二个 Eloquent 模型，使其必须是之前 Eloquent 模型的子模型。 
+
+例如，考虑这个通过 slug 为特定用户检索博客文章的路由定义：
+
+```php
+use App\Models\Post;
+use App\Models\User;
+ 
+Route::get('/users/{user}/posts/{post:slug}', function (User $user, Post $post) {
+    return $post;
+});
+```
+
+当使用自定义的隐式绑定作为嵌套路由参数时，Laravel 将自动限定查询范围以通过其父级检索嵌套模型，使用约定来猜测父级上的关系名称。 
+
+但是，当自定义键用于子路由绑定时，Laravel 之前仅支持此行为。
+
+然而，在 Laravel 9.x 中，即使没有提供自定义键，现在也可以指示 Laravel 限定“子”绑定。
+
+为此，可以在定义路由时调用 `scopeBindings` 方法：
+                                            
+```php {6}
+use App\Models\Post;
+use App\Models\User;
+ 
+Route::get('/users/{user}/posts/{post}', function (User $user, Post $post) {
+    return $post; // 这里获取的文章必须是用户所属文章
+})->scopeBindings();
+```
+
+或者，可以指定整个路由定义组使用范围绑定：
+
+```php {1}
+Route::scopeBindings()->group(function () {
+    Route::get('/users/{user}/posts/{post}', function (User $user, Post $post) {
+        return $post;
+    });
+});
+```
+
 <a name="test-coverage-report"></a>
 ## 测试覆盖率报告
 
