@@ -52,11 +52,28 @@ Route::post('posts', [PostsController::class, 'store']); // 保存文章
 
 ![新的路由列表命令输出结果](/images/9.x/new-design-for-route-list-command-output.png)
 
-
-             
+ 
 <a name="anonymous-stub-migrations"></a>
 ## 匿名迁移类
-   
+
+Laravel 8.37 时推出了一个名为匿名迁移类的新功能，可以防止迁移类名称冲突。
+
+在 Laravel 9.x 项目中运行 `php artisan make:migration` 时的默认设置。
+
+```php {7}
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    // ...
+};
+```
+
+
 <a name="new-helper-functions"></a>
 ## 新助手函数
        
