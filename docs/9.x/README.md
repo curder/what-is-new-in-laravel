@@ -101,9 +101,14 @@ Str::of('hello world')->append(' and anything else.'); // 输出为：hello worl
 redirect()->route('index');  // 跳转到路由命名为 index 的地址
 ```
        
-<a name="refreshed-ignition-error-page"></a>
+<a name="improved-ignition-error-page"></a>
 ## 新的错误页面
-                                            
+
+Spatie 创建的开源异常调试页面 [ignition](https://github.com/spatie/ignition) 已经从头开始重新设计。
+
+更加优雅的错误页面随 Laravel 9.x 一起提供，包括浅色/深色主题、可定制的“在编辑器中打开”功能等等。
+
+![新的错误页面](/images/9.x/improved-ignition-exception-page.png)                                            
    
 <a name="render-a-blade-string"></a>
 ## 渲染blade模版字符串
