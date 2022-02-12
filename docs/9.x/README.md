@@ -188,8 +188,52 @@ XDEBUG_MODE=coverage php artisan test --coverage
 
 
 <a name="laravel-scout-database-engine"></a>
-## Scout搜索数据库驱动
+## [Scout搜索数据库驱动](https://laravel.com/docs/9.x/scout#database-engine)
 
+如果应用程序与中小型数据库交互或工作负载较轻，现在可以使用 Scout 的“数据库”引擎，而不是 Algolia 或 MeiliSerach 等专用搜索服务。
+
+数据库引擎将在过滤现有数据库的结果时使用“where like”子句和全文索引，以确定查询的适用搜索结果。
+
+值得注意的是，当前数据库驱动仅支持 `MySQL` 和 `PostgreSQL`。
+
+- 配置驱动
+
+在 `config/scote.php` 文件中定义了数据库检索驱动，默认为 `algolia`。 可以在 `.env` 文件中定义为：`database`
+
+```dotenv
+SCOUT_DRIVER=database
+```
+
+- 数据库定义
+
+```php
+// 引用搜索trait
+use Laravel\Scout\Searchable; 
+
+// 定义检索的字段映射关系
+/**
+ * Get the indexable data array for the model.
+ *
+ * @return array
+ */
+public function toSearchableArray()
+{
+    return [
+        'description' => $this->description,
+        'body' => $this->body,
+    ];
+}
+```
+                 
+- 使用
+
+```php
+use App\Models\Post;
+
+Post::search('illumn')->get();
+```
+                 
+> 更多相关使用，可以查看 [laravel/scout 官方文档](https://laravel.com/docs/9.x/scout)
 
 <a name="full-text-indexing"></a>
 ## 全文索引
