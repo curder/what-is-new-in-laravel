@@ -172,6 +172,21 @@ Route::scopeBindings()->group(function () {
 <a name="test-coverage-report"></a>
 ## 测试覆盖率报告
 
+一个新的 `artisan test --coverage` 选项将直接在终端上显示测试覆盖率。
+
+它还包括一个 `--min` 选项，可以使用它来指示测试覆盖率的最小阈值强制执行。
+
+> **注意：** 需要开启 xdebug
+
+执行测试覆盖率命令
+
+```bash
+XDEBUG_MODE=coverage php artisan test --coverage
+```
+
+![测试覆盖率报告](/images/9.x/new-test-coverage-report.png)
+
+
 <a name="laravel-scout-database-engine"></a>
 ## Scout搜索数据库驱动
 
