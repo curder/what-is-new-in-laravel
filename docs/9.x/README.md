@@ -18,6 +18,7 @@ sidebar: auto
   <CodeGroupItem title="Laravel 9.x 版本">
 
 ```php
+// Laravel 9.x 版本
 use App\Http\Controllers\PostsController;
 
 Route::controller(PostsController::class)->group(function () {
@@ -32,6 +33,7 @@ Route::controller(PostsController::class)->group(function () {
   <CodeGroupItem title="Laravel 8.x 或之前版本">
 
 ```php
+// Laravel 8.x 或之前版本
 use App\Http\Controllers\PostsController;
 
 Route::get('posts', [PostsController::class, 'index']); // 文章列表
