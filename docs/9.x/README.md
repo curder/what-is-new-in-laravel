@@ -238,6 +238,21 @@ Post::search('illumn')->get();
 <a name="full-text-indexing"></a>
 ## 全文索引
 
+使用 `MySQL` 或 `PostgreSQL` 时，现在可以将 `fullText()` 方法添加到列定义中以生成全文索引：
+
+- 迁移文件定义
+```php
+$table->text('body')->fullText();
+```
+
+此外，`whereFullText` 和 `orWhereFullText` 方法可用于将全文“where”子句添加到具有全文索引的列的查询中。 
+
+这些方法将被转换成适合底层数据库系统的 SQL。 例如，将为使用 MySQL 的应用程序生成 `MATCH AGAINST` 子句：
+
+```php
+DB::table('posts')->whereFullText('body', 'web developer')->get();
+```
+
 
 <a name="enum-attribute-casting"></a>
 ## 枚举属性转换
