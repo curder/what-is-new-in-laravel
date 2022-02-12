@@ -255,7 +255,7 @@ DB::table('posts')->whereFullText('body', 'web developer')->get();
 
 
 <a name="enum-attribute-casting"></a>
-## 枚举属性转换
+## 枚举属性转换 「PHP 8.1+」
 
 PHP 8.1 引入了对枚举的支持。
 
