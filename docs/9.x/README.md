@@ -45,14 +45,12 @@ Route::post('posts', [PostsController::class, 'store']); // 保存文章
 
 </CodeGroup>
 
-<a name="new-design-for-route:list"></a>
-## 新的 `route:list` 命令输出结果
+<a name="new-design-for-route-list-command-output"></a>
+## 新的路由列表命令输出结果
 
 在之前版本中，当拥有众多路由定义的话，使用 `route:list` 命令会使得输出不易读。
 
-<img :src="$withBase('/images/9.x/new-design-for-route-list-command-output.png')" alt="新的 `route:list` 命令输出结果">
-
-![新的 `route:list` 命令输出结果](/images/9.x/new-design-for-route-list-command-output.png)
+![新的路由列表命令输出结果](/images/9.x/new-design-for-route-list-command-output.png)
 
 
              
