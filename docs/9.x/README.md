@@ -74,8 +74,32 @@ return new class extends Migration
 ```
 
 
-<a name="new-helper-functions"></a>
-## 新助手函数
+<a name="new-str-and-to-router-helper-functions"></a>
+## 新 [`str()`](https://laravel.com/docs/9.x/helpers#strings-method-list) 和 `to_route()` 函数
+
+由于 PHP 8 将是Laravel支持的最低版本，[Tom Schlick](https://github.com/laravel/framework/pull/38011) 提交了一个 PR，在 `\Illuminate\Support\Str` 类内部使用 `str_contains()`、`str_starts_with()` 和 `str_ends_with()` 函数。
+                                                   
+- Laravel 9.x
+```php
+// str
+str('hello world')->upper(); // 输出为：HELLO WORLD
+str('hello world')->append(' and anything else. ');  // 输出为：hello world and anything else.
+
+// to_route
+to_route('index'); // 跳转到路由命名为 index 的地址
+```
+
+- Laravel 8.x 或之前版本
+
+```php
+use Illuminate\Support\Str;
+// Str
+Str::of('hello world')->upper(); // 输出为：HELLO WORLD
+Str::of('hello world')->append(' and anything else.'); // 输出为：hello world and anything else.
+
+// redirect
+redirect()->route('index');  // 跳转到路由命名为 index 的地址
+```
        
 <a name="refreshed-ignition-error-page"></a>
 ## 新的错误页面
