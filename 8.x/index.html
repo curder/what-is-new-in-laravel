@@ -23,7 +23,7 @@
 			}
     </script>
     <title>8.x | What's New in Laravel</title><meta name="description" content="记录 Laravel 发布稳定版本更新的新特性">
-    <link rel="modulepreload" href="/what-is-new-in-laravel/assets/app.ba2f2e38.js"><link rel="modulepreload" href="/what-is-new-in-laravel/assets/index.html.cb90ebf2.js"><link rel="modulepreload" href="/what-is-new-in-laravel/assets/index.html.83ac95cd.js"><link rel="modulepreload" href="/what-is-new-in-laravel/assets/plugin-vue_export-helper.21dcd24c.js">
+    <link rel="modulepreload" href="/what-is-new-in-laravel/assets/app.f19996f8.js"><link rel="modulepreload" href="/what-is-new-in-laravel/assets/index.html.cfad6c86.js"><link rel="modulepreload" href="/what-is-new-in-laravel/assets/index.html.610bb169.js"><link rel="modulepreload" href="/what-is-new-in-laravel/assets/plugin-vue_export-helper.21dcd24c.js">
     <link rel="stylesheet" href="/what-is-new-in-laravel/assets/style.1b47c977.css">
   </head>
   <body>
@@ -102,36 +102,7 @@
 <span class="token punctuation">{</span>
     <span class="token keyword">use</span> <span class="token package">HasFactory</span><span class="token punctuation">,</span> Notifiable<span class="token punctuation">;</span>
 
-    <span class="token doc-comment comment">/**
-     * The attributes that are mass assignable.
-     *
-     * <span class="token keyword">@var</span> <span class="token class-name"><span class="token keyword">array</span></span>
-     */</span>
-    <span class="token keyword">protected</span> <span class="token variable">$fillable</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
-        <span class="token string single-quoted-string">&#39;name&#39;</span><span class="token punctuation">,</span>
-        <span class="token string single-quoted-string">&#39;email&#39;</span><span class="token punctuation">,</span>
-        <span class="token string single-quoted-string">&#39;password&#39;</span><span class="token punctuation">,</span>
-    <span class="token punctuation">]</span><span class="token punctuation">;</span>
-
-    <span class="token doc-comment comment">/**
-     * The attributes that should be hidden for arrays.
-     *
-     * <span class="token keyword">@var</span> <span class="token class-name"><span class="token keyword">array</span></span>
-     */</span>
-    <span class="token keyword">protected</span> <span class="token variable">$hidden</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
-        <span class="token string single-quoted-string">&#39;password&#39;</span><span class="token punctuation">,</span>
-        <span class="token string single-quoted-string">&#39;remember_token&#39;</span><span class="token punctuation">,</span>
-    <span class="token punctuation">]</span><span class="token punctuation">;</span>
-
-    <span class="token doc-comment comment">/**
-     * The attributes that should be cast to native types.
-     *
-     * <span class="token keyword">@var</span> <span class="token class-name"><span class="token keyword">array</span></span>
-     */</span>
-    <span class="token keyword">protected</span> <span class="token variable">$casts</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
-        <span class="token string single-quoted-string">&#39;email_verified_at&#39;</span> <span class="token operator">=&gt;</span> <span class="token string single-quoted-string">&#39;datetime&#39;</span><span class="token punctuation">,</span>
-    <span class="token punctuation">]</span><span class="token punctuation">;</span>
-
+    <span class="token comment">// ...</span>
 
     <span class="token comment">// 定义关联关系</span>
     <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">posts</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -140,7 +111,7 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
-</span></code></pre><div class="highlight-lines"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><div class="highlight-line"> </div><div class="highlight-line"> </div><div class="highlight-line"> </div><div class="highlight-line"> </div><div class="highlight-line"> </div><br><br></div><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br></div></div><!--]--></div><div class="code-group-item" aria-selected="false"><!--[--><div class="language-php ext-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+</span></code></pre><div class="highlight-lines"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><div class="highlight-line"> </div><div class="highlight-line"> </div><div class="highlight-line"> </div><div class="highlight-line"> </div><br><br></div><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><!--]--></div><div class="code-group-item" aria-selected="false"><!--[--><div class="language-php ext-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
 
 <span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>Models</span><span class="token punctuation">;</span>
 
@@ -240,6 +211,6 @@
 </code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p><a name="migration-squashing"></a></p><h2 id="压缩迁移文件" tabindex="-1"><a class="header-anchor" href="#压缩迁移文件" aria-hidden="true">#</a> 压缩迁移文件</h2><p>如果应用程序包含许多迁移文件，现在可以将它们压缩到单个 SQL 文件中。</p><p>该文件将在运行迁移时首先执行，然后是不属于压缩文件的任何剩余迁移文件。</p><p>压缩现有迁移可以减少迁移文件膨胀，并可能在运行测试时提高性能。</p><ul><li>压缩迁移文件</li></ul><div class="language-bash ext-sh line-numbers-mode"><pre class="language-bash"><code>php artisan schema:dump
 </code></pre><div class="line-numbers"><span class="line-number">1</span><br></div></div><blockquote><p>通过上面的命令可以将现有迁移文件压缩成一个SQL文件<code>database/schema/mysql-schema.dump</code>。</p></blockquote><ul><li>压缩迁移文件并删除迁移文件</li></ul><div class="language-bash ext-sh line-numbers-mode"><pre class="language-bash"><code>php artisan schema:dump --prune 
 </code></pre><div class="line-numbers"><span class="line-number">1</span><br></div></div><p><a name="improved-rate-limiting"></a></p><h2 id="限速改进" tabindex="-1"><a class="header-anchor" href="#限速改进" aria-hidden="true">#</a> 限速改进</h2><p><a name="time-testing-helpers"></a></p><h2 id="时间测试助手" tabindex="-1"><a class="header-anchor" href="#时间测试助手" aria-hidden="true">#</a> 时间测试助手</h2><p><a name="dynamic-blade-components"></a></p><h2 id="动态模版组件" tabindex="-1"><a class="header-anchor" href="#动态模版组件" aria-hidden="true">#</a> 动态模版组件</h2><p><a name="maintenance-mode-secrets"></a></p><h2 id="维护模式" tabindex="-1"><a class="header-anchor" href="#维护模式" aria-hidden="true">#</a> 维护模式</h2><p><a name="cleaner-closure-based-event-listeners"></a></p><h2 id="基于闭包的事件监听器" tabindex="-1"><a class="header-anchor" href="#基于闭包的事件监听器" aria-hidden="true">#</a> 基于闭包的事件监听器</h2><p><a name="laravel-sail"></a></p><h2 id="laravel-sail" tabindex="-1"><a class="header-anchor" href="#laravel-sail" aria-hidden="true">#</a> Laravel Sail</h2><!--]--></div><footer class="page-meta"><!----><div class="meta-item last-updated"><span class="meta-item-label">Last Updated: </span><!----></div><div class="meta-item contributors"><span class="meta-item-label">Contributors: </span><span class="meta-item-info"><!--[--><!--[--><span class="contributor" title="email: q.curder@gmail.com">curder</span><!----><!--]--><!--]--></span></div></footer><!----><!--[--><!--]--></main><!--]--></div><!----><!--]--></div>
-    <script type="module" src="/what-is-new-in-laravel/assets/app.ba2f2e38.js" defer></script>
+    <script type="module" src="/what-is-new-in-laravel/assets/app.f19996f8.js" defer></script>
   </body>
 </html>

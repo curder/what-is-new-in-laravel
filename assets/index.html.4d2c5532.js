@@ -1,4 +1,4 @@
-import{r as t,o as c,c as r,w as e,a as o,b as n,d as s}from"./app.ba2f2e38.js";import{_ as i}from"./plugin-vue_export-helper.21dcd24c.js";const p={},u=n("div",{class:"language-bash ext-sh line-numbers-mode"},[n("pre",{class:"language-bash"},[n("code",null,[n("span",{class:"token function"},"yarn"),s(),n("span",{class:"token comment"},"# install in your project"),s(`
+import{r as t,o as c,c as r,w as e,a as o,b as n,d as s}from"./app.f19996f8.js";import{_ as i}from"./plugin-vue_export-helper.21dcd24c.js";const p={},u=n("div",{class:"language-bash ext-sh line-numbers-mode"},[n("pre",{class:"language-bash"},[n("code",null,[n("span",{class:"token function"},"yarn"),s(),n("span",{class:"token comment"},"# install in your project"),s(`
 
 `),n("span",{class:"token function"},"yarn"),s(),n("span",{class:"token function"},"watch"),s(),n("span",{class:"token comment"},"# start writing"),s(`
 
