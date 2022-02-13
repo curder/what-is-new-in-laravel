@@ -24,6 +24,82 @@ Laravel 8 的应用程序框架包含一个 `app/Models` 目录。
 <a name="model-factory-classes"></a>
 ## 模型工厂类 
 
+从 Laravel 8 开始，Eloquent 模型工厂现在是基于类的，改进了对工厂之间关系的支持（即，一个用户有很多帖子）。
+
+对于每个模型，还有一个工厂类，其中有一个定义方法，说明它将为该模型生成哪些属性。 而模型通过 `\Illuminate\Database\Eloquent\Factories\HasFactory` 特征使用该工厂。
+
+并且默认不支持 `factory()` 函数的调用，
+
+### 模型工厂类定义
+
+```php {49-54}
+<?php
+
+namespace Database\Factories;
+
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+
+class UserFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = User::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'name' => $this->faker->name,
+            'email' => $this->faker->unique()->safeEmail,
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'is_suspended' => false,
+        ];
+    }
+
+    /**
+     * Indicate that the model's email address should be unverified.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function unverified()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'email_verified_at' => null,
+            ];
+        });
+    }
+    
+    public function suspended()
+    {
+        return $this->state([
+            'is_suspended' => true,
+        ])       
+    }
+}
+
+```
+
+### 使用模型工厂
+```php
+use App\Models\User;
+ 
+User::factory()->count(50)->make();
+ 
+// using a model state "suspended" defined within the factory class
+User::factory()->count(5)->suspended()->create();
+```
 
 <a name="migration-squashing"></a>
 ## 迁移压缩
