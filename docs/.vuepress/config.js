@@ -6,6 +6,7 @@ module.exports = {
     themeConfig: {
         navbar: [
             {text: '首页', link: '/'},
+            {text: 'Laravel 8.x', link: '/8.x'},
             {text: 'Laravel 9.x', link: '/9.x'},
         ],
         sidebar: {
