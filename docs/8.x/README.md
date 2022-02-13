@@ -102,7 +102,7 @@ User::factory()->count(5)->suspended()->create();
 ```
 
 <a name="migration-squashing"></a>
-## 迁移压缩
+## 压缩迁移文件
 
 如果应用程序包含许多迁移文件，现在可以将它们压缩到单个 SQL 文件中。
 
