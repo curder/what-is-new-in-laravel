@@ -28,6 +28,23 @@ Laravel 8 的应用程序框架包含一个 `app/Models` 目录。
 <a name="migration-squashing"></a>
 ## 迁移压缩
 
+如果应用程序包含许多迁移文件，现在可以将它们压缩到单个 SQL 文件中。
+
+该文件将在运行迁移时首先执行，然后是不属于压缩文件的任何剩余迁移文件。
+
+压缩现有迁移可以减少迁移文件膨胀，并可能在运行测试时提高性能。
+
+- 压缩迁移文件
+```bash
+php artisan schema:dump
+```
+> 通过上面的命令可以将现有迁移文件压缩成一个SQL文件`database/schema/mysql-schema.dump`。
+
+- 压缩迁移文件并删除迁移文件
+```bash
+php artisan schema:dump --prune 
+```
+
 
 <a name="improved-rate-limiting"></a>
 ## 限速改进
