@@ -101,6 +101,195 @@ User::factory()->count(50)->make();
 User::factory()->count(5)->suspended()->create();
 ```
 
+### 模型工厂关联关系
+
+假定使用最常见的一个用户可以发布多个文章，一篇文章属于一个用户的模型关系，相关定义如下：
+
+<CodeGroup>
+  <CodeGroupItem title="User 模型">
+
+```php {45-49}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+class User extends Authenticatable
+{
+    use HasFactory, Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+
+    // 定义关联关系
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+}
+
+```
+
+  </CodeGroupItem>
+
+  <CodeGroupItem title="Post 模型">
+
+```php {13-16}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Post extends Model
+{
+    use HasFactory;
+
+    // Post 模型 定义关联关系
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+}
+
+```
+
+  </CodeGroupItem>
+
+  <CodeGroupItem title="post迁移文件">
+
+```php
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreatePostsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('posts', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(\App\Models\User::class);
+            $table->string('title');
+            $table->text('body');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('posts');
+    }
+}
+```
+
+  </CodeGroupItem>
+
+  <CodeGroupItem title="Post工厂文件">
+
+```php
+<?php
+
+namespace Database\Factories;
+
+use App\Models\Post;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class PostFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Post::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'user_id' => User::factory(),
+            'title' => $this->faker->sentence(),
+            'body' => $this->faker->paragraph(),
+        ];
+    }
+}
+```
+
+  </CodeGroupItem>
+
+</CodeGroup>
+
+
+上面的定义后，可以通过下面的关联关系来创建数据：
+```php
+use App\Models\{User,Post};
+// has* 通过 User 模型创建 Post 模型数据
+User::factory()->has(Post::factory())->create(); // 创建1个User模型对应的同时关联创建1个Post模型对象数据
+User::factory()->hasPosts()->create(); // 上面方式的简写，创建1个User模型对应的同时关联创建1个Post模型对象数据
+
+User::factory()->has(Post::factory()->count(5))->create(); // 创建1个User模型对象的同时关联创建5个Post模型对象数据
+User::factory()->hasPosts(5)->create(); // 上面方式的简写，创建1个User模型对象的同时关联创建5个Post模型对象数据
+ 
+// for* 通过 Post 模型创建 User 模型数据
+Post::factory()->for(User::factory())->create(); // 创建1个Post模型对应的同时关联创建1个User模型对象数据
+Post::factory()->forUser()->create(); // 上面方式的简写，创建1个Post模型对应的同时关联创建1个User模型对象数据
+
+Post::factory()->for(User::factory())->count(5)->create(); // 创建5个Post模型对应的同时关联创建1个User模型对象数据
+Post::factory()->forUser()->count(5)->create(); // 上面方式的简写，创建5个Post模型对应的同时关联创建1个User模型对象数据
+```
+
+
 <a name="migration-squashing"></a>
 ## 压缩迁移文件
 
