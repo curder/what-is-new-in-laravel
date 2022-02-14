@@ -8,7 +8,7 @@ sidebar: auto
 
 [Laravel 8](https://laravel.com/docs/8.x/releases) 是在 2022-09-08 发布并包含许多新功能。
 
-其中包含许多新功能，包括 [Laravel Jetstream](#laravel-jetstream)、[模型目录](#models-directory)、[模型工厂类](#model-factory-classes)、[迁移压缩](#migration-squashing)、[限速改进](#improved-rate-limiting)、[时间测试助手](#time-testing-helpers)、[动态模版组件](#dynamic-blade-components)、[维护模式](#maintenance-mode-secrets)、[基于闭包的事件监听器](#cleaner-closure-based-event-listeners)和 [Laravel Sail](#laravel-sail)，以及更多功能。
+其中包含许多新功能，包括 [Laravel Jetstream](#laravel-jetstream)、[模型目录](#models-directory)、[控制器路由命名空间](#controllers-routing-namespacing)、[模型工厂类](#model-factory-classes)、[迁移压缩](#migration-squashing)、[限速改进](#improved-rate-limiting)、[时间测试助手](#time-testing-helpers)、[动态模版组件](#dynamic-blade-components)、[维护模式](#maintenance-mode-secrets)、[基于闭包的事件监听器](#cleaner-closure-based-event-listeners)和 [Laravel Sail](#laravel-sail)，以及更多功能。
 
 <a name="laravel-jetstream"></a>
 ## Laravel Jetstream
@@ -23,6 +23,25 @@ sidebar: auto
 Laravel 8 的应用程序框架包含一个 `app/Models` 目录。
 
 所有生成器命令都假定模型存在于 `app/Models` 中； 但是，如果此目录不存在，则框架将假定应用程序将模型保存在 `app/` 文件夹中（生成的模型文件路径将保持跟之前一致，在 `app/` 目录下）。
+
+
+<a name="controllers-routing-namespacing"></a>
+## 控制器路由命名空间
+
+在之前的 Laravel 版本中，RouteServiceProvider 有一个名为 namespace 的属性，用于为路由文件中的控制器添加前缀。
+
+当尝试在控制器上使用可调用语法时，这会产生问题，导致 Laravel 错误地为您添加双类命名空间前缀。
+
+此属性已被删除，现在可以毫无问题地导入和使用它。
+
+它也可以用于具有 `__invoke` 方法的[单处理方法的控制器](https://laravel.com/docs/8.x/controllers#single-action-controllers)。
+
+```php
+Route::get('/test', [TestsController::class, 'index'])->name('test');
+
+Route::get('/test', TestsController::class);
+```
+
 
 <a name="model-factory-classes"></a>
 ## 模型工厂类 
@@ -420,5 +439,4 @@ Event::listen(fn (ConferenceScheduled $event) => dd(get_class($event)));
 ```
 
 <a name="laravel-sail"></a>
-## [Laravel Sail](https://laravel.com/docs/8.x/sail) 
-
+## [Laravel Sail](https://laravel.com/docs/8.x/sail)
