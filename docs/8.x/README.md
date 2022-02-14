@@ -324,6 +324,48 @@ Route::get('/downloads', fn () => 'Downloads...')
 <a name="time-testing-helpers"></a>
 ## 时间测试助手
 
+Laravel 用户可以通过出色的 Carbon PHP 库完全控制时间修改。
+
+Laravel 8 通过提供方便的测试助手来操纵测试中的时间，更进一步：
+
+### 将时间设置到未来
+
+```php
+$this->travel(5)->milliseconds(); // 5毫秒后
+$this->travel(5)->seconds(); // 5秒后
+$this->travel(5)->minutes(); // 5分后
+$this->travel(5)->hours(); // 5小时后
+$this->travel(5)->days(); // 5天后
+$this->travel(5)->weeks(); // 5星期后
+$this->travel(5)->years(); // 5年后
+````
+
+### 将时间设置到过去
+
+```php
+$this->travel(-5)->milliseconds(); // 5毫秒前
+$this->travel(-5)->seconds(); // 5秒前
+$this->travel(-5)->minutes(); // 5分前
+$this->travel(-5)->hours(); // 5小时前
+$this->travel(-5)->days(); // 5天前
+$this->travel(-5)->weeks(); // 5星期前
+$this->travel(-5)->years(); // 5年前
+```
+ 
+### 将时间设置到准确的时间
+
+```php
+$this->travelTo(now()->subHours(6)); // 6个月前
+```
+ 
+### 将时间设置到现在
+
+```php
+$this->travelBack(); // now() 当前时间
+```
+
+使用这些方法时，每次测试之间的时间都会重置。
+
 
 <a name="dynamic-blade-components"></a>
 ## 动态模版组件
