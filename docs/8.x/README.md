@@ -8,7 +8,7 @@ sidebar: auto
 
 [Laravel 8](https://laravel.com/docs/8.x/releases) 是在 2022-09-08 发布并包含许多新功能。
 
-其中包含许多新功能，包括 [Laravel Jetstream](#laravel-jetstream)、[模型目录](#models-directory)、[控制器路由命名空间](#controllers-routing-namespacing)、[模型工厂类](#model-factory-classes)、[迁移压缩](#migration-squashing)、[限速改进](#improved-rate-limiting)、[时间测试助手](#time-testing-helpers)、[动态模版组件](#dynamic-blade-components)、[维护模式](#maintenance-mode-secrets)、[基于闭包的事件监听器](#cleaner-closure-based-event-listeners)和 [Laravel Sail](#laravel-sail)，以及更多功能。
+其中包含许多新功能，包括 [Laravel Jetstream](#laravel-jetstream)、[模型目录](#models-directory)、[控制器路由命名空间](#controllers-routing-namespacing)、[路由缓存](#route-caching)、[匿名事件监听器队列](#queueable-anonymous-event-listeners)、[模型工厂类](#model-factory-classes)、[迁移压缩](#migration-squashing)、[限速改进](#improved-rate-limiting)、[时间测试助手](#time-testing-helpers)、[动态模版组件](#dynamic-blade-components)、[维护模式](#maintenance-mode-secrets)、[基于闭包的事件监听器](#cleaner-closure-based-event-listeners)和 [Laravel Sail](#laravel-sail)，以及更多功能。
 
 <a name="laravel-jetstream"></a>
 ## Laravel Jetstream
@@ -56,6 +56,30 @@ Route::get('/components', function() {
 });
 ```
 
+
+<a name="queueable-anonymous-event-listeners"></a>
+## 匿名事件监听器队列
+
+在 Laravel 8 中，可以从代码中的任何位置创建可排队的闭包。
+
+这将创建一个匿名事件侦听器队列，这些侦听器将在后台执行。
+
+此功能使执行此操作更容易，而在以前的 Laravel 版本中，您需要使用事件类和事件侦听器（使用 ShouldQueue 特征）。
+
+```php{8}
+<?php
+namespace App\Models;
+use function Illuminate\Events\queueable;
+class User extends Authenticatable
+{
+    protected static function booting()
+    {
+        static::created(queueable(function (User $user) {
+            logger('Oueued:' . $user-›name);
+        }));
+    }
+}
+```
 
 
 <a name="model-factory-classes"></a>
