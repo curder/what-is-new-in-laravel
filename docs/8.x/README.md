@@ -384,6 +384,16 @@ Laravel 8 提供了 `<x-dynamic-component/>` 来渲染组件：
 <a name="maintenance-mode-secrets"></a>
 ## 维护模式
 
+Laravel的维护模式特征在Laravel 8.x中得到了改进。
+
+现在支持预渲染维护模式模板，并消除在维护模式期间遇到错误而反馈给用户。
+
+```bash
+php artisan down --secret=curder # 配置对应的密匙，执行命令后再访问 https://laravel8.test/curder 会允许正常访问，否则返回 503
+
+php artisan down --render # 默认返回503
+php artisan down --render="maintenance" # 也可以接受返回自定义视图，自定义视图在`resources/views/maintenance.blade.php`
+```
 
 <a name="cleaner-closure-based-event-listeners"></a>
 ## 基于闭包的事件监听器 
