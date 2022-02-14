@@ -13,6 +13,9 @@ sidebar: auto
 <a name="laravel-jetstream"></a>
 ## Laravel Jetstream
 
+[Laravel Jetstream](https://github.com/laravel/jetstream) 改进了之前版本中现有的 Laravel UI 脚手架。 
+
+它为新项目提供了一个起点，包括登录、注册、电子邮件验证、双重身份验证、会话管理、通过 Laravel 提供的 API 支持和团队管理。
 
 <a name="models-directory"></a>
 ## 模型目录
