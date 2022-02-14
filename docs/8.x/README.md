@@ -285,6 +285,41 @@ php artisan schema:dump --prune
 <a name="improved-rate-limiting"></a>
 ## 限速改进
 
+Laravel 8 对现有速率限制功能进行了改进，同时支持与现有油门中间件的向后兼容性并提供更大的灵活性。 
+
+Laravel 8 具有速率限制器的概念，可以通过 Facades 定义：
+
+```php
+// app/Providers/RouteServiceProvider 
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Support\Facades\RateLimiter;
+ 
+RateLimiter::for('global', function (Request $request) {
+    return Limit::perMinute(1000);
+});
+
+RateLimiter::for('downloads', function(Request $request) {
+    return $request->user()->isForever()
+        ? Limit::none()
+        : Limit::perMinute(30);
+});
+```
+
+`for()` 方法采用 HTTP 请求实例，可以完全控制动态限制请求。
+
+- 使用
+```php {3,9}
+// 在 app/Kernel.php 中配置
+'api' => [
+    'throttle:api',
+    \Illuminate\Routing\Middleware\SubstituteBindings::class,
+],
+ 
+// 在路由中使用 
+Route::get('/downloads', fn () => 'Downloads...')
+    ->middleware(['throttle:downloads']);
+```
+
 
 <a name="time-testing-helpers"></a>
 ## 时间测试助手
