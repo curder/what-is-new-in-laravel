@@ -398,6 +398,26 @@ php artisan down --render="maintenance" # 也可以接受返回自定义视图�
 <a name="cleaner-closure-based-event-listeners"></a>
 ## 基于闭包的事件监听器 
 
+在之前的 Laravel 版本中，当创建一个基于闭包的事件监听器时，会有很多重复和繁琐的语法。
+
+```php
+use Illuminate\Support\Facades\Event;
+
+Event::listen(ConferenceScheduled::class, function(ConferenceScheduled $event) {
+    dd(get_class($event));
+});
+```
+
+在 Laravel 8 中它更简单、更干净
+
+```php
+Event::listen(function(ConferenceScheduled $event) {
+    dd(get_class($event));
+});
+
+// 使用箭头函数
+Event::listen(fn (ConferenceScheduled $event) => dd(get_class($event)));
+```
 
 <a name="laravel-sail"></a>
 ## Laravel Sail 
