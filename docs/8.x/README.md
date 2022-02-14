@@ -8,7 +8,7 @@ sidebar: auto
 
 [Laravel 8](https://laravel.com/docs/8.x/releases) 是在 2022-09-08 发布并包含许多新功能。
 
-其中包含许多新功能，包括 [Laravel Jetstream](#laravel-jetstream)、[模型目录](#models-directory)、[控制器路由命名空间](#controllers-routing-namespacing)、[路由缓存](#route-caching)、[匿名事件监听器队列](#queueable-anonymous-event-listeners)、[模型工厂类](#model-factory-classes)、[迁移压缩](#migration-squashing)、[限速改进](#improved-rate-limiting)、[时间测试助手](#time-testing-helpers)、[动态模版组件](#dynamic-blade-components)、[维护模式](#maintenance-mode-secrets)、[基于闭包的事件监听器](#cleaner-closure-based-event-listeners)和 [Laravel Sail](#laravel-sail)，以及更多功能。
+其中包含许多新功能，包括 [Laravel Jetstream](#laravel-jetstream)、[模型目录](#models-directory)、[控制器路由命名空间](#controllers-routing-namespacing)、[路由缓存](#route-caching)、[匿名事件监听器队列](#queueable-anonymous-event-listeners)、[模型工厂类](#model-factory-classes)、[迁移压缩](#migration-squashing)、[限速改进](#improved-rate-limiting)、[时间测试助手](#time-testing-helpers)、[动态模版组件](#dynamic-blade-components)、[维护模式](#maintenance-mode-secrets)、[基于闭包的事件监听器](#cleaner-closure-based-event-listeners)、[Closure Dispatch “Catch”](#closure-dispatch-catch)和 [Laravel Sail](#laravel-sail)，以及更多功能。
 
 <a name="laravel-jetstream"></a>
 ## Laravel Jetstream
@@ -476,6 +476,24 @@ Event::listen(function(ConferenceScheduled $event) {
 // 使用箭头函数
 Event::listen(fn (ConferenceScheduled $event) => dd(get_class($event)));
 ```
+                           
+<a name="closure-dispatch-catch"></a>
+## Closure Dispatch “Catch”
+
+Laravel 有一个非常健壮的队列系统，它接受一个将在后台序列化和执行的闭包队列。
+
+现在有一种方法来处理失败，以防闭包中逻辑执行失败。
+
+```php
+Route::get('/queue-catch', function () {
+    dispatch(function () {
+        throw new Exception('Something went wrong...');
+    })->catch(function () {
+        logger('Caught dispatch exception from /queue-catch uri');
+    });
+});
+```
+
 
 <a name="laravel-sail"></a>
 ## [Laravel Sail](https://laravel.com/docs/8.x/sail)
