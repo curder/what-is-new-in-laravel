@@ -17,6 +17,11 @@ sidebar: auto
 
 它为新项目提供了一个起点，包括登录、注册、电子邮件验证、双重身份验证、会话管理、通过 Laravel 提供的 API 支持和团队管理。
 
+```bash
+php artisan jetstream:install livewire
+php artisan jetstream:install inertia
+```
+
 <a name="models-directory"></a>
 ## 模型目录
 
