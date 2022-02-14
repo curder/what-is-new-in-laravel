@@ -8,7 +8,7 @@ sidebar: auto
 
 [Laravel 8](https://laravel.com/docs/8.x/releases) 是在 2022-09-08 发布并包含许多新功能。
 
-其中包含许多新功能，包括 [Laravel Jetstream](#laravel-jetstream)、[模型目录](#models-directory)、[控制器路由命名空间](#controllers-routing-namespacing)、[路由缓存](#route-caching)、[匿名事件监听器队列](#queueable-anonymous-event-listeners)、[模型工厂类](#model-factory-classes)、[迁移压缩](#migration-squashing)、[限速改进](#improved-rate-limiting)、[时间测试助手](#time-testing-helpers)、[动态模版组件](#dynamic-blade-components)、[维护模式](#maintenance-mode-secrets)、[基于闭包的事件监听器](#cleaner-closure-based-event-listeners)、[Closure Dispatch “Catch”](#closure-dispatch-catch)和 [Laravel Sail](#laravel-sail)，以及更多功能。
+其中包含许多新功能，包括 [Laravel Jetstream](#laravel-jetstream)、[模型目录](#models-directory)、[控制器路由命名空间](#controllers-routing-namespacing)、[路由缓存](#route-caching)、[匿名事件监听器队列](#queueable-anonymous-event-listeners)、[模型工厂类](#model-factory-classes)、[迁移压缩](#migration-squashing)、[限速改进](#improved-rate-limiting)、[时间测试助手](#time-testing-helpers)、[动态模版组件](#dynamic-blade-components)、[维护模式](#maintenance-mode-secrets)、[基于闭包的事件监听器](#cleaner-closure-based-event-listeners)、[Closure Dispatch “Catch”](#closure-dispatch-catch)、[Backoff Strategy](#backoff-strategy)和 [Laravel Sail](#laravel-sail)，以及更多功能。
 
 <a name="laravel-jetstream"></a>
 ## Laravel Jetstream
@@ -494,6 +494,26 @@ Route::get('/queue-catch', function () {
 });
 ```
 
+<a name="backoff-strategy"></a>
+## 重试策略
+
+可以降低工作速度，以便逐渐找到可接受的速度。
+
+现在 Laravel 也有了这个功能，这对于处理外部 API 的工作来说很方便，不想在相同的时间内再试一次。
+
+也可以用来动态生成返回数组，设置不同的等待时间再重试。
+
+```php
+/**
+* Calculate the number of seconds to wait before retrying the job.
+*
+* @return array
+*/
+public function backoff()
+{
+    return [1, 5, 10];
+}
+```
 
 <a name="laravel-sail"></a>
 ## [Laravel Sail](https://laravel.com/docs/8.x/sail)
