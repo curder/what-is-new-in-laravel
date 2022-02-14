@@ -515,5 +515,27 @@ public function backoff()
 }
 ```
 
+<a name="job-batching"></a>
+## 任务批处理
+
+当所有任务完成或执行有任何错误时，也很容易得到通知。 
+
+```php
+Bus::batch([
+    new LoadImportBatch,
+    new LoadImportBatch,
+    new LoadImportBatch,
+])->then(function (Batch $batch) {
+    // All jobs completed successfully...
+})->catch(function(Batch $batch) {
+    // First jon failure detected
+})->finnal(function(Batch $batch) {
+    // All jobs have finished executing
+})->name('Import Contacts')->dispatch();
+```
+
+可以查看添加此功能的 [PR](https://github.com/laravel/framework/pull/32830) 的更多详细信息。
+
+
 <a name="laravel-sail"></a>
 ## [Laravel Sail](https://laravel.com/docs/8.x/sail)
