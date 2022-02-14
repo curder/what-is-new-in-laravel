@@ -420,5 +420,5 @@ Event::listen(fn (ConferenceScheduled $event) => dd(get_class($event)));
 ```
 
 <a name="laravel-sail"></a>
-## Laravel Sail 
+## [Laravel Sail](https://laravel.com/docs/8.x/sail) 
 
