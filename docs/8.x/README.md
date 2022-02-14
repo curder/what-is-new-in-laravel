@@ -43,6 +43,21 @@ Route::get('/test', TestsController::class);
 ```
 
 
+<a name="route-caching"></a>
+## 路由缓存 
+
+Laravel 使用路由缓存将您的路由编译到一个 PHP 数组中，这样可以更有效地处理。
+
+在 Laravel 8 中，即使将闭包作为路由的操作，也可以使用此功能。 这应该扩展路由缓存的使用以提高性能。
+
+```php
+Route::get('/components', function() {
+    return view('button');
+});
+```
+
+
+
 <a name="model-factory-classes"></a>
 ## 模型工厂类 
 
