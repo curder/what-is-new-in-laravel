@@ -373,6 +373,13 @@ $this->travelBack(); // now() 当前时间
 <a name="dynamic-blade-components"></a>
 ## 动态模版组件
 
+有时需要在运行时动态渲染模版组件。 
+
+Laravel 8 提供了 `<x-dynamic-component/>` 来渲染组件：
+
+```php
+<x-dynamic-component :component="$componentName" class="mt-4" />
+```
 
 <a name="maintenance-mode-secrets"></a>
 ## 维护模式
