@@ -386,3 +386,9 @@ return User::query()
 
 // SELECT * FROM `users` WHERE NOT (`id` = 10 and `email` = 'curder@qq.com');
 ```
+
+## 过滤掉在 `route:list` 中供应商包中定义的路由
+
+在 Laravel v9.3.0 中可以使用 `route:list` 命令提供的新 [`--except-vendor`](https://github.com/laravel/framework/pull/41254) 选项轻松地从您的路由列表中排除所有供应商路由。
+
+![项目路由列表 --except-vendor 选项](/images/9.x/except-vendor-flag.png)
