@@ -372,3 +372,17 @@ public function url(): Attribute
     return Attribute::get(fn () => route('posts.show', $this));
 }
 ```
+
+## `whereNot` 查询子句
+
+在 Laravel v9.3.0 中，可以使用模型查询构建器上新的 [`whereNot`](https://github.com/laravel/framework/pull/41096) 方法轻松构建 'where not' SQL 子句。
+
+```php
+return User::query()
+    ->whereNot(fn ($query) => 
+        $query->where('id', 10)
+              ->where('email','curder@qq.com')
+    )->get();
+
+// SELECT * FROM `users` WHERE NOT (`id` = 10 and `email` = 'curder@qq.com');
+```
