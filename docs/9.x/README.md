@@ -392,3 +392,32 @@ return User::query()
 在 Laravel v9.3.0 中可以使用 `route:list` 命令提供的新 [`--except-vendor`](https://github.com/laravel/framework/pull/41254) 选项轻松地从您的路由列表中排除所有供应商路由。
 
 ![项目路由列表 --except-vendor 选项](/images/9.x/except-vendor-flag.png)
+
+## 验证消息的位置/索引占位符
+
+在 Laravel v9.3.0 中在数组验证消息中添加了[对索引和位置占位符的支持](https://github.com/laravel/framework/pull/41123)。
+
+
+```php
+$data = [
+    'photos' => [
+        [
+            'name' => 'Beautiful Wallpaper',
+            'description' => 'My favorite desktop wallpaper.',
+        ],
+        [
+            'name' => 'Beach vacation',
+            'description' => '',
+        ]
+    ],
+];
+
+$validator = Validator::make($data, [
+    'photos.*.name' => ['required', 'string'],
+    'photos.*.description' => ['required', 'string'],
+], [
+    'photos.*.description.required' => 'Please provider a description for photo #:position'
+]);
+
+$validator->errors()->first(); // "Please provider a description for photo #2"
+```
