@@ -373,6 +373,23 @@ public function url(): Attribute
 }
 ```
 
+## Attribute 的 `make` 方法
+
+```php
+// 使用 new 关键字
+return (new Attribute(
+    get: fn ($value) => strtoupper($value),
+    set: fn ($value) => strtoupper($value)
+))->withoutObjectCaching();
+ 
+// 使用 make 静态构造方法
+return Attribute::make(
+    get: fn ($value) => strtoupper($value),
+    set: fn ($value) => strtoupper($value)
+)->withoutObjectCaching();
+```
+
+
 ## `whereNot` 查询子句
 
 在 Laravel v9.3.0 中，可以使用模型查询构建器上新的 [`whereNot`](https://github.com/laravel/framework/pull/41096) 方法轻松构建 'where not' SQL 子句。
