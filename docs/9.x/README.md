@@ -375,6 +375,8 @@ public function url(): Attribute
 
 ## Attribute 的 `make` 方法
 
+在 Laravel v9.2.0 添加 [`Illuminate/Database/Eloquent/Casts/Attribute::make()`](https://github.com/laravel/framework/pull/41014) 方法。
+
 ```php
 // 使用 new 关键字
 return (new Attribute(
@@ -388,6 +390,7 @@ return Attribute::make(
     set: fn ($value) => strtoupper($value)
 )->withoutObjectCaching();
 ```
+
 
 
 ## `whereNot` 查询子句
