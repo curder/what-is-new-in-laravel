@@ -411,6 +411,16 @@ Arr::keyBy($array, 'id');
 */
 ```
 
+## 字符串方法 `betweenFirst`
+
+在 Laravel v9.2.0 添加 [`betweenFirst()`](https://github.com/laravel/framework/pull/41144) 方法获取两个给定值之间的字符串的最小可能部分。
+
+```php
+Str::betweenFirst('[a]ab[b]', '[', ']'); // a
+Str::betweenFirst('foofoobar', 'foo', 'bar'); // foo
+Str::betweenFirst('hannah', 'ha', 'ah'); // nn
+Str::betweenFirst('dddabcddd', 'a', 'c')); // b
+```
 
 
 ## `whereNot` 查询子句
