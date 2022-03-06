@@ -422,6 +422,21 @@ Str::betweenFirst('hannah', 'ha', 'ah'); // nn
 Str::betweenFirst('dddabcddd', 'a', 'c')); // b
 ```
 
+## 允许为 Rule 对象指定自定义消息
+
+在 Laravel v9.2.0 添加了一种在使用 Rule 对象进行验证时[指定自定义错误消息的方法](https://github.com/laravel/framework/pull/41145)。 通过此更新，您可以向消息数组提供自定义消息：
+
+```php
+$request->validate(
+    [
+        'foo' => [new Example]
+    ],
+    [
+        Example::class => 'My custom message goes here!'
+    ]
+);
+```
+
 
 ## `whereNot` 查询子句
 
