@@ -391,6 +391,26 @@ return Attribute::make(
 )->withoutObjectCaching();
 ```
 
+## Arr::keyBy() 方法
+在 Laravel v9.2.0 添加 [`Illuminate/Collections/Arr::keyBy()`](https://github.com/laravel/framework/pull/41029) 方法。
+
+```php
+array = [
+    ['id' => '123', 'data' => 'abc', 'device' => 'laptop'],
+    ['id' => '345', 'data' => 'def', 'device' => 'tablet'],
+    ['id' => '345', 'data' => 'hgi', 'device' => 'smartphone'],
+];
+ 
+Arr::keyBy($array, 'id');
+/*
+[
+    '123' => ['id' => '123', 'data' => 'abc', 'device' => 'laptop'],
+    '345' => ['id' => '345', 'data' => 'hgi', 'device' => 'smartphone']
+    // 由于 id 相同，原始数组的第二个元素被最后一个元素覆盖
+]
+*/
+```
+
 
 
 ## `whereNot` 查询子句
